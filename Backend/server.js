@@ -1,8 +1,10 @@
 const cfg = require("dotenv");
 const express = require("express");
+const cors = require('cors');
 const {startUsersRoutes} = require("./app/routes/users.routes.js");
 const app = express();
 app.use(express.json());
+app.use(cors());
 cfg.config();
 
 startUsersRoutes(app);

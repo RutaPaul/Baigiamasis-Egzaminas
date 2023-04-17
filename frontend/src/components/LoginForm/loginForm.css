@@ -1,0 +1,32 @@
+.LoginForm{
+    background-color: rgb(211, 163, 163);
+    
+}
+
+.LoginForm label {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    margin-top:5%;
+    height: 5vh
+}
+
+.LoginForm label input{
+    width:100%;
+}
+.LoginForm label p{
+    width:40%;
+}
+
+.loginFormButtons{
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+}
+
+.loginFormButtons input{
+    width: 50%;
+    margin-top:5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
