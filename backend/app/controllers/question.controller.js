@@ -19,5 +19,24 @@ exports.createQuestion = (req, res) => {
         res.status(500).send({message: err.message || "Some error occurred while creating new question."});
         else res.send(data);
     })
-
 }
+
+exports.likeQuestion = (req, res) => {
+    const id = req.params.id;
+    Question.like(id, (err,data)=>{
+        if(err)
+        res.status(500).send({message: err.message || "Some error occurred while liking a question."});
+        else res.send(data);
+    })
+}
+
+exports.dislikeQuestion = (req, res) => {
+    const id = req.params.id;
+    Question.dislike(id, (err,data)=>{
+        if(err)
+        res.status(500).send({message: err.message || "Some error occurred while disliking a question."});
+        else res.send(data);
+    })
+}
+
+

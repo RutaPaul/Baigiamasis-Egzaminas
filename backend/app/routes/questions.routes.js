@@ -3,6 +3,8 @@ const startQuestionsRoutes = (app) => {
     var router = require("express").Router();
     router.get("/", question.getQuestions);
     router.post("/", question.createQuestion);
+    router.post("/like/:id", question.likeQuestion);
+    router.post("/dislike/:id", question.dislikeQuestion);
     app.use('/api/questions', router);
 };
 

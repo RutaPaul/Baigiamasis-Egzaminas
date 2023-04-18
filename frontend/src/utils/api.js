@@ -63,6 +63,42 @@ const createQuestion = async(question, username) => {
     }
 }
 
+const likeQuestion = async(questionID) => {
+    try{
+        const rawResponse = await fetch("http://localhost:4000/api/questions/like/"+questionID, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
+const dislikeQuestion = async(questionID) => {
+    try{
+        const rawResponse = await fetch("http://localhost:4000/api/questions/dislike/"+questionID, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
 export {
-    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl, createQuestion
+    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl, createQuestion, likeQuestion, dislikeQuestion
 }

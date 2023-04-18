@@ -43,8 +43,54 @@ Question.createQuestion = (newQuestion, result) => {
               });
         }
     })
-
-    
   };
+
+  Question.like = (id, result) => {
+    let query = `SELECT Q.LIKES FROM QUESTIONS Q WHERE Q.ID ='` + id + "'";
+    sql.query(query, (err,res)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else {
+            let likes = res[0].LIKES;
+            likes = likes + 1;
+            let queryLikes = `UPDATE QUESTIONS SET LIKES='`+ likes +`' WHERE ID='`+id+"'";
+            sql.query(queryLikes, (err,res)=>{
+                if(err){
+                    console.log(err);
+                    result(err,null);
+                }
+                else {
+                    result(null,res);
+                }
+            })
+        }
+    })
+  }
+
+  Question.dislike = (id, result) => {
+    let query = `SELECT Q.DISLIKES FROM QUESTIONS Q WHERE Q.ID ='` + id + "'";
+    sql.query(query, (err,res)=>{
+        if(err){
+            console.log(err);
+            result(err,null);
+        }
+        else {
+            let dislikes = res[0].DISLIKES;
+            dislikes = dislikes + 1;
+            let queryDislikes = `UPDATE QUESTIONS SET DISLIKES='`+ dislikes +`' WHERE ID='`+id+"'";
+            sql.query(queryDislikes, (err,res)=>{
+                if(err){
+                    console.log(err);
+                    result(err,null);
+                }
+                else {
+                    result(null,res);
+                }
+            })
+        }
+    })
+  }
 
 module.exports = Question;
