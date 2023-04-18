@@ -4,17 +4,9 @@ import "./main.css";
 
 function Main() {
   return (
-    <div className='Main'>
-      <div className='leftSidebar'>
-        leftSidebar
-      </div>
       <div className='mainPage'>
         <MainPage/>
       </div>
-      <div className='rightSidebar'>
-        rightSidebar
-      </div>
-    </div>
   );
 }
 

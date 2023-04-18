@@ -1,3 +1,20 @@
+.Main {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+}
+
+.leftSidebar {
+  width: 20vw;
+  background-color: rgb(177, 177, 233);
+  height: 100%;
+}
+
+.rightSidebar {
+  width: 20vw;
+  background-color: rgb(177, 177, 233);
+  height: 100%;
+}
 .App {
   text-align: center;
 }

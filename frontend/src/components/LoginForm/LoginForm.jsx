@@ -6,15 +6,15 @@ const handleSubmit = (event) => {
     let type = event.nativeEvent.submitter.value;
     let username = event.target[0].value;
     let password = event.target[0].value;
-    UserValidation(username,password,type,auth);   
+    UserValidation(username,password,type, setAuthentication);   
     event.preventDefault();
 }
 
-let auth = null; 
+let setAuthentication = null; 
 
 const LoginForm = (props) => {
     useEffect(() => {
-        auth = props.setAuthentication;
+        setAuthentication = props.setAuthentication;
     }, []);
     return(
         <form className="LoginForm" onSubmit={handleSubmit}>

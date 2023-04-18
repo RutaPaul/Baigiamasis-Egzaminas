@@ -13,13 +13,18 @@ const getAllQuestions = async () => {
 }
 
 const getHomePageUrl = () => {
-    return "http://localhost:3000/";
-}
-const getQuestionUrl = (id) => {
-    return "http://localhost:3000/question/"+id;
+    return "/";
 }
 
-const UserValidation = async (username, password, type, authenticate) =>{
+const getQuestionUrl = (id) => {
+    return "/question/"+id;
+}
+
+const getQuestionFormUrl= (id=null) => {
+    return "/questionform/"+id;
+}
+
+const UserValidation = async (username, password, type, setAuthentication) =>{
     try{
         const rawResponse = await fetch("http://localhost:4000/api/users/"+type, {
             method: 'POST',
@@ -30,7 +35,7 @@ const UserValidation = async (username, password, type, authenticate) =>{
             body: JSON.stringify({ Username:username, Password:password })
         });
         const content = await rawResponse.json();
-        authenticate({Username:content.Username, Authenticated:true})
+        setAuthentication({Username:content.Username, Authenticated:true})
         console.log(content);
 
     }
@@ -39,7 +44,25 @@ const UserValidation = async (username, password, type, authenticate) =>{
     }
 }
 
+const createQuestion = async(question, username) => {
+    try{
+        const rawResponse = await fetch("http://localhost:4000/api/questions/", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ Username:username, Question:question })
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
 
 export {
-    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl
+    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl, createQuestion
 }
