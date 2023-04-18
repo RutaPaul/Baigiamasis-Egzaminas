@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from  'react-router-dom';
 import Header from "./components/Header";
 import Main from "./pages/Main";
-import Questions from "./pages/Questions";
+import Question from "./pages/Question";
 import './App.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Main/>}/>
-          <Route path="/Questions" exact element={<Questions/>}/>
+          <Route path="/Question/:id" exact element={<Question/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,6 +1,6 @@
-const getFlats = async () => {
+const getAllQuestions = async () => {
     try {
-        const response = await fetch("https://cdn.rawgit.com/abbassiddiqi/airbnb-api/bbd1300a/flats.json");
+        const response = await fetch("http://localhost:4000/api/questions");
         if(response.status === 200){
             return await response.json();
         } else {
@@ -14,6 +14,9 @@ const getFlats = async () => {
 
 const getHomePageUrl = () => {
     return "http://localhost:3000/";
+}
+const getQuestionUrl = (id) => {
+    return "http://localhost:3000/question/"+id;
 }
 
 const UserValidation = async (username, password, type, authenticate) =>{
@@ -38,5 +41,5 @@ const UserValidation = async (username, password, type, authenticate) =>{
 
 
 export {
-    UserValidation
+    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl
 }

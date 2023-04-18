@@ -1,6 +1,6 @@
 .LoginForm{
     background-color: rgb(211, 163, 163);
-    
+    position:fixed;
 }
 
 .LoginForm label {

@@ -9,12 +9,12 @@ const UserPanel = (props) => {
         <div className="UserPanel">
             {
                 props.authentication.Authenticated ? 
-                <button type="button" class="btn btn-outline-dark" onClick={()=>{
+                <button type="button" className="btn btn-outline-dark" onClick={()=>{
                     setFormVisibility(false)
                     props.setAuthentication({Username:"", Authenticated:false})
                 }}>Logout</button>
                 :
-                <button type="button" class="btn btn-outline-dark" onClick={()=>{setFormVisibility(!formVisible)}}>Login</button>
+                <button type="button" className="btn btn-outline-dark" onClick={()=>{setFormVisibility(!formVisible)}}>Login</button>
             }
             
             {   

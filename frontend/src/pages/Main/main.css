@@ -1,0 +1,25 @@
+.Main {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+}
+
+.leftSidebar {
+    width: 20%;
+    background-color: rgb(177, 177, 233);
+    height: 100%;
+}
+
+.mainPage {
+    width: 60%;
+    background-color: rgb(177, 177, 233);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightSidebar {
+    width: 20%;
+    background-color: rgb(177, 177, 233);
+    height: 100%;
+}
