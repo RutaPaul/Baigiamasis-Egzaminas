@@ -1,0 +1,14 @@
+.questionSidebar{
+    width: 80%;
+    margin-left: 10%;
+    text-align: left;
+    margin-top:2vh;
+    height: 6vh;
+    border-top: 1px rgb(177, 177, 233) solid;
+    border-bottom: 1px rgb(177, 177, 233) solid;
+    background-color: rgb(141, 141, 238);
+}
+
+.questionSidebar:hover{
+    cursor: pointer;
+}

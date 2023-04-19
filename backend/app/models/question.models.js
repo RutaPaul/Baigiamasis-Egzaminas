@@ -12,7 +12,7 @@ Question.getQuestions = (result) => {
     let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID `;
     sql.query(query, (err,res)=>{
         if(err){
-
+            result(err,null);
         }
         else {
             result(null,res);
@@ -20,6 +20,34 @@ Question.getQuestions = (result) => {
 
     })
 }
+
+Question.getTopQuestions = (top, result) => {
+    let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID LIMIT `+ top;
+    sql.query(query, (err,res)=>{
+        if(err){
+            result(err,null);
+        }
+        else {
+            result(null,res);
+        }
+
+    })
+}
+
+
+Question.getUserQuestions = (username, result) => {
+    let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID WHERE U.USERNAME ='` + username + `'`;
+    sql.query(query, (err,res)=>{
+        if(err){
+            result(err, null);
+        }
+        else {
+            result(null,res);
+        }
+
+    })
+}
+
 Question.createQuestion = (newQuestion, result) => {
 
     let query = `SELECT U.ID FROM USERS U WHERE U.USERNAME ='` + newQuestion.UserID + "'";
@@ -92,5 +120,46 @@ Question.createQuestion = (newQuestion, result) => {
         }
     })
   }
+
+  Question.deleteQuestion = (id, result) => {
+    sql.query(`DELETE FROM QUESTIONS WHERE ID = ?`, id, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null);
+        return;
+      }
+  
+      console.log(`deleted question detail with ${id}`);
+      result(null, res);
+    });
+  };
+
+  Question.updateQuestion = (id, question, result) => {
+    sql.query(
+      "UPDATE QUESTIONS SET Question = ? WHERE ID = ?",
+      [question.Question, id],
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(null, err);
+          return;
+        }
+  
+        if (res.affectedRows == 0) {
+          // not found question with the id
+          result({ kind: "not_found" }, null);
+          return;
+        }
+  
+        console.log("updated question: ", { id: id, ...question });
+        result(null, { id: id, ...question });
+        }
+      );
+  };
 
 module.exports = Question;

@@ -12,12 +12,40 @@ const getAllQuestions = async () => {
     }
 }
 
+const getTopQuestions = async (count) => {
+    try {
+        const response = await fetch("http://localhost:4000/api/questions/top/"+count);
+        if(response.status === 200){
+            return await response.json();
+        } else {
+            console.log(response);
+        }
+    }
+    catch (ex){
+        console.log(ex);
+    }
+}
+
+const getAllUserQuestions = async (username) => {
+    try {
+        const response = await fetch("http://localhost:4000/api/questions/user/" + username);
+        if(response.status === 200){
+            return await response.json();
+        } else {
+            console.log(response);
+        }
+    }
+    catch (ex){
+        console.log(ex);
+    }
+}
+
 const getHomePageUrl = () => {
     return "/";
 }
 
-const getQuestionUrl = (id) => {
-    return "/question/"+id;
+const getQuestionUrl = (id, username) => {
+    return "/question/"+id + "/" + username;
 }
 
 const getQuestionFormUrl= (id=null) => {
@@ -63,6 +91,24 @@ const createQuestion = async(question, username) => {
     }
 }
 
+const deleteQuestion = async (id) => {
+    try{
+        const rawResponse = await fetch("http://localhost:4000/api/questions/delete/"+id, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+
+    }
+    catch(ex){
+        console.log(ex);
+    }  
+}
+
 const likeQuestion = async(questionID) => {
     try{
         const rawResponse = await fetch("http://localhost:4000/api/questions/like/"+questionID, {
@@ -74,7 +120,6 @@ const likeQuestion = async(questionID) => {
         });
         const content = await rawResponse.json();
         console.log(content);
-
     }
     catch(ex){
         console.log(ex);
@@ -100,5 +145,7 @@ const dislikeQuestion = async(questionID) => {
 }
 
 export {
-    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl, createQuestion, likeQuestion, dislikeQuestion
+    UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl,
+    createQuestion, likeQuestion, dislikeQuestion, getAllUserQuestions,
+    getTopQuestions, deleteQuestion
 }

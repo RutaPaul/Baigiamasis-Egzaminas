@@ -21,9 +21,16 @@ const Header = (props) => {
             <div className="ActionIcons">
                 <Icon icon="fa-solid fa-house fa-2xl headerIcon" onClick={goHome} clickable={true}/>
             </div>
-            <div>
-                <Icon icon="fa-solid fa-square-plus fa-2xl headerIcon" onClick={createQuestion} clickable={true}/>
-            </div>
+            {
+                props.authentication.Authenticated ?
+                <div>
+                    <Icon icon="fa-solid fa-square-plus fa-2xl headerIcon" onClick={createQuestion} clickable={true}/>
+                </div>
+                :
+                ""
+
+            }
+            
             
             <div className="HeaderInfo">
                 {props.authentication.Username}
