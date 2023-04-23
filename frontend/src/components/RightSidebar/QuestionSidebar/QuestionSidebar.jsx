@@ -7,7 +7,7 @@ const QuestionSidebar = (props) => {
     let navigate = useNavigate();
 
     const getQuestion = () =>{
-        navigate(getQuestionUrl(props.question.ID));
+        navigate(getQuestionUrl(props.question.ID, props.question.Username));
     }
     
     return(

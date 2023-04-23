@@ -3,11 +3,64 @@
     text-align: left;
     margin-top:2vh;
     height: 12vh;
-    border-top: 1px rgb(177, 177, 233) solid;
-    border-bottom: 1px rgb(177, 177, 233) solid;
+    border-top: 3px rgb(177, 177, 233) solid;
+    border-bottom: 3px rgb(177, 177, 233) solid;
     background-color: rgb(141, 141, 238);
+    box-shadow: rgba(165, 196, 236, 0.4) -2px 2px, rgb(141, 141, 238) -4px 4px, rgba(94, 238, 219, 0.2) -6px 6px, rgba(10, 63, 235, 0.1) -8px 8px, rgba(235, 235, 235, 0.05) -10px 10px;
 }
 
-.questionBar:hover{
-    cursor: pointer;
+@keyframes wiggle {
+    0%, 7% {
+      transform: rotateZ(0);
+    }
+    15% {
+      transform: rotateZ(-0.5deg);
+    }
+    20% {
+      transform: rotateZ(0.5deg);
+    }
+    25% {
+      transform: rotateZ(-0.5deg);
+    }
+    30% {
+      transform: rotateZ(0.5deg);
+    }
+    35% {
+      transform: rotateZ(-0.5deg);
+    }
+    40%, 100% {
+      transform: rotateZ(0);
+    }
+  }
+  
+
+.questionBar:hover {  
+    cursor: pointer; 
+    animation: wiggle 2s linear infinite;
+}
+
+.titleClass {
+    width: 68%;
+    color: white;
+    font-size: x-large;
+    margin-left:6%;
+}
+
+.questionClass {
+    margin-left: 3%;
+    font-size: large;
+}
+
+.usernameClass {
+    width: 16%;
+}
+.answersCountClass{
+    width: 16%;
+}
+
+.questionBarTop {
+    margin-top:0.5%;
+    margin-bottom: 0.5%;
+    display: flex;
+    flex-direction: row;
 }

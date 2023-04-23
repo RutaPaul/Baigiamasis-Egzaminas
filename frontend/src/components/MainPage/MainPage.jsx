@@ -34,7 +34,7 @@ const MainPage = (props) => {
         }
         {
             questions ?
-                <button > See All</button>
+                <button style={{marginTop:"5%"}} className="btn btn-outline-primary"> See All</button>
             :
             ""
         }

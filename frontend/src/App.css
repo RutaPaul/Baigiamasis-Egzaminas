@@ -1,9 +1,9 @@
 .Main {
   display: flex;
   flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
   height: 90vh;
 }
-
 .leftSidebar {
   width: 20vw;
   background-color: rgb(177, 177, 233);

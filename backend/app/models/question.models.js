@@ -3,13 +3,14 @@ const sql = require("./db.js");
 const Question = function(question){
     this.UserID = question.Username;
     this.Question = question.Question;
+    this.Title = question.Title;
     this.Date = new Date();
     this.Likes = 0;
     this.Dislikes = 0;
 }
 
 Question.getQuestions = (result) => {
-    let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID `;
+    let query = `SELECT Q.ID, Q.Title, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID `;
     sql.query(query, (err,res)=>{
         if(err){
             result(err,null);
@@ -21,8 +22,8 @@ Question.getQuestions = (result) => {
     })
 }
 
-Question.getTopQuestions = (top, result) => {
-    let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID LIMIT `+ top;
+Question.getQuestion = (id, result) => {
+    let query = `SELECT Q.ID, Q.Title, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID WHERE Q.ID ='` + id + "'";
     sql.query(query, (err,res)=>{
         if(err){
             result(err,null);
@@ -30,13 +31,24 @@ Question.getTopQuestions = (top, result) => {
         else {
             result(null,res);
         }
+    })
+}
 
+Question.getTopQuestions = (top, result) => {
+    let query = `SELECT Q.ID, Q.Title, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID LIMIT `+ top;
+    sql.query(query, (err,res)=>{
+        if(err){
+            result(err,null);
+        }
+        else {
+            result(null,res);
+        }
     })
 }
 
 
 Question.getUserQuestions = (username, result) => {
-    let query = `SELECT Q.ID, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID WHERE U.USERNAME ='` + username + `'`;
+    let query = `SELECT Q.ID, Q.Title, Q.Date, Q.Likes, Q.Dislikes, Q.Question, U.Username FROM QUESTIONS Q INNER JOIN USERS U ON U.ID = Q.UserID WHERE U.USERNAME ='` + username + `'`;
     sql.query(query, (err,res)=>{
         if(err){
             result(err, null);
@@ -141,8 +153,8 @@ Question.createQuestion = (newQuestion, result) => {
 
   Question.updateQuestion = (id, question, result) => {
     sql.query(
-      "UPDATE QUESTIONS SET Question = ? WHERE ID = ?",
-      [question.Question, id],
+      "UPDATE QUESTIONS SET Question = ?, Title = ? WHERE ID = ?",
+      [question.Question, question.Title, id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -156,6 +168,7 @@ Question.createQuestion = (newQuestion, result) => {
           return;
         }
   
+        console.log(res);
         console.log("updated question: ", { id: id, ...question });
         result(null, { id: id, ...question });
         }

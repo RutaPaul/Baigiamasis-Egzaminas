@@ -8,6 +8,14 @@ exports.getQuestions = (req,res) => {
     })
 }
 
+exports.getQuestion = (req,res) => {
+  Question.getQuestion(req.params.id, (err,data)=>{
+    if(err)
+      res.status(500).send({});
+    else res.send(data);
+  })
+}
+
 exports.getTopQuestions = (req,res) => {
     Question.getTopQuestions(req.params.count, (err,data)=>{
         if(err)
@@ -29,6 +37,7 @@ exports.createQuestion = (req, res) => {
     const newQuestion = new Question({
         Username: req.body.Username,
         Question: req.body.Question,
+        Title: req.body.Title
     });
 
     Question.createQuestion(newQuestion, (err,data)=>{

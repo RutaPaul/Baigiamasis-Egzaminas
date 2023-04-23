@@ -1,22 +1,41 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import {createQuestion, getHomePageUrl} from "../../../utils/api"
+import {createQuestion, updateQuestion, getQuestionByID} from "../../../utils/api"
 import "./questionForm.css";
 
-const handleSubmit = (event) => {
-    let question = event.target[0].value;
-    createQuestion(question,username);   
-    event.preventDefault();
-}
 
 let username = null;
 
 function QuestionForm(props) {
-    let { id } = useParams();
+    const getQuestion = async (id) =>{
+        let data = await getQuestionByID(id);
+        if(data){
+            setQuestion(data[0]);
+        }
+    }
 
+    const handleSubmit = (event) => {
+        let title = event.target[0].value;
+        let question = event.target[1].value;
+        if(id){
+            updateQuestion(title, question, id);  
+        }
+        else {
+            createQuestion(title, question,username);  
+        }
+ 
+        event.preventDefault();
+    }
+
+    let { id } = useParams();
+    const [question, setQuestion] = useState(null);
     useEffect(() => {
         username = props.username;
-    }, []);
+        if(id){
+            if(!question)
+                getQuestion(id); 
+        }
+    });
 
     return (
         <>
@@ -24,17 +43,17 @@ function QuestionForm(props) {
             props.username ? 
             <form className="questionForm" onSubmit={handleSubmit}>
                 <label>
+                    <p>Title:</p>
+                    <textarea name="title"  defaultValue={question ? question.Title : ""}/>
+                </label>
+                <label>
                     <p>Question:</p>
-                    <textarea name="question" />
+                    <textarea name="question" defaultValue={question ? question.Question : ""}/>
                 </label>
                 <input type="submit" className="btn btn-outline-dark" value="Submit" />
             </form>
             :
-            (
-            <h1>t</h1>,
-            props.username,
-            <h1>t</h1>
-            )
+            ""
         }
         </>
   );

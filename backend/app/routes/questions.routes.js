@@ -2,6 +2,7 @@ const startQuestionsRoutes = (app) => {
     const question = require("../controllers/question.controller.js");
     var router = require("express").Router();
     router.get("/", question.getQuestions);
+    router.get('/:id', question.getQuestion);
     router.get("/user/:username", question.getUserQuestions);
     router.get("/top/:count", question.getTopQuestions);
     router.post("/", question.createQuestion);

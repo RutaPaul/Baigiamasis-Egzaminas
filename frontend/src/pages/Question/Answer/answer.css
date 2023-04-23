@@ -1,0 +1,30 @@
+.questionAnswer {
+    width: 95%;
+    border: 2px solid black;
+    height: 20vh;
+    text-align: left;
+    margin-top:2%;
+    margin-left:2.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.mainQuestionAnswerData{
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.mainQuestionAnswerHeader {
+    text-align: left;
+}
+
+.mainQuestionAnswerText {
+    text-align: center;
+}
+
+.answerActionBar{
+    background-color: grey;
+    width: 10%;
+}

@@ -24,18 +24,18 @@ const Header = (props) => {
             {
                 props.authentication.Authenticated ?
                 <div>
-                    <Icon icon="fa-solid fa-square-plus fa-2xl headerIcon" onClick={createQuestion} clickable={true}/>
+                    <button type="button" className="btn btn-outline-dark headerNewQuestionButton" onClick={createQuestion}>Ask a question</button>
                 </div>
                 :
                 ""
 
             }
-            
-            
             <div className="HeaderInfo">
                 {props.authentication.Username}
             </div>
-            <UserPanel authentication={props.authentication} setAuthentication={props.setAuthentication}/>
+            <div className="HeaderPanelRight">
+                <UserPanel authentication={props.authentication} setAuthentication={props.setAuthentication}/>
+            </div>
         </div>
     )
 }

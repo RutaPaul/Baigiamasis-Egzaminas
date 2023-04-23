@@ -5,6 +5,7 @@ import RightSidebar from './components/RightSidebar';
 import Main from "./pages/Main";
 import Question from "./pages/Question";
 import QuestionForm from "./pages/Question/QuestionForm";
+import AnswerForm from "./pages/Question/Answer/AnswerForm";
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/" exact element={<Main/>}/>
               <Route path="/Question/:id/:username" exact element={<Question authentication={Authentication}/>}/>
               <Route path="/QuestionForm/:id" exact element={<QuestionForm username={Authentication.Username}/>}/>
+              <Route path="/AnswerForm/:id" exact element={<AnswerForm username={Authentication.Username}/>}/>
             </Routes>
             <div className='rightSidebar'>
               {

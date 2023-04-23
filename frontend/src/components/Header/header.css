@@ -9,6 +9,16 @@
 }
 
 .HeaderInfo{
-    width: 60%;
+    width: 80%;
     text-align: right;
+    margin-right: 9%;
+}
+
+.HeaderPanelRight{
+    width: 8.25%;
+}
+
+.headerNewQuestionButton {
+    width: 10vw;
+    margin-left:20%;
 }
