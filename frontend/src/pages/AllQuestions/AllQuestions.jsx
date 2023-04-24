@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate, useParams } from "react-router-dom";
 import "./allquestions.css";
 import {getAllQuestions} from "../../utils/api";
 import QuestionBar from "../../components/MainPage/QuestionBar";
 
 function AllQuestions() {
-
-    let navigate = useNavigate();
     const getQuestions = async () =>{
         let data = await getAllQuestions();
         if(data){

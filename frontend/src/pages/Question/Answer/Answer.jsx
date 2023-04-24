@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {dislikeAnswer, likeAnswer, getAnswerFormUrl} from "../../../utils/api";
 import Icon from "../../../components/Icon";
 

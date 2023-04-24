@@ -67,8 +67,6 @@ exports.dislikeAnswer = (req, res) => {
   })
 }
 
-
-
 exports.getCountByQuestionID = (req,res) => {
   Answer.getCountByQuestionID(req.params.id, (err,data) => {
     if(err)

@@ -16,7 +16,6 @@ function App() {
   }, []);
   return (
     <div className="App">
-      
         <BrowserRouter>
           <Header authentication={Authentication} setAuthentication={setAuthentication}/>
           <div className='Main'>
@@ -36,8 +35,7 @@ function App() {
               }
             </div>
           </div>
-        </BrowserRouter>
-        
+        </BrowserRouter>    
     </div>
   );
 }

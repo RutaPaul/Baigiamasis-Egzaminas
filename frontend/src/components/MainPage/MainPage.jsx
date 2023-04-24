@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {getTopQuestions} from "../../utils/api";
 import "./mainPage.css";
 import QuestionBar from "./QuestionBar";

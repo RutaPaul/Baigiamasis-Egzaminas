@@ -8,8 +8,7 @@ const User = function(user){
 
 User.Register = (newUser, result) => {
 
-    let query = `SELECT * FROM USERS `;
-    query += `WHERE USERS.Username = '${newUser.Username}' `
+    let query = `SELECT * FROM USERS WHERE USERS.Username = '${newUser.Username}' `
 
     sql.query(query, (err,res)=>{ 
         if (err) {
