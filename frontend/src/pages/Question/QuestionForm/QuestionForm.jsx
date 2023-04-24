@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {createQuestion, updateQuestion, getQuestionByID, getHomePageUrl, getQuestionUrl} from "../../../utils/api"
 import "./questionForm.css";
 
-
 let username = null;
 
 function QuestionForm(props) {
@@ -69,7 +68,6 @@ function QuestionForm(props) {
             :
             ""
         }
-
         </>
   );
 }

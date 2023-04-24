@@ -24,19 +24,19 @@ Answer.getAnswersByQuestionID = (id, result) => {
 
 Answer.deleteAnswer = (id, result) => {
     sql.query(`DELETE FROM ANSWERS WHERE ID = ?`, id, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-      if (res.affectedRows == 0) {
-        result({ kind: "not_found" }, null);
-        return;
-      }
-  
-      console.log(`deleted question detail with ${id}`);
-      result(null, res);
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        if (res.affectedRows == 0) {
+            result({ kind: "not_found" }, null);
+            return;
+        }
+
+        console.log(`deleted question detail with ${id}`);
+        result(null, res);
     });
   };
 
@@ -77,21 +77,19 @@ Answer.createAnswer = (newAnswer, result) => {
             newAnswer.UserID = res[0].ID;
             sql.query("INSERT INTO ANSWERS SET ?", newAnswer, (err, res) => {
                 if (err) {
-                  console.log("error: ", err);
-                  result(err, null);
-                  return;
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
                 }
             
                 console.log("created answer: ", { id: res.insertId, ...newAnswer });
                 result(null, { id: res.insertId, ...newAnswer });
-              });
+            });
         }
     })
-  };
-
-
+};
   
-  Answer.like = (id, result) => {
+Answer.like = (id, result) => {
     let query = `SELECT A.LIKES FROM ANSWERS A WHERE A.ID ='` + id + "'";
     sql.query(query, (err,res)=>{
         if(err){
@@ -113,9 +111,9 @@ Answer.createAnswer = (newAnswer, result) => {
             })
         }
     })
-  }
+}
 
-  Answer.dislike = (id, result) => {
+Answer.dislike = (id, result) => {
     let query = `SELECT A.DISLIKES FROM ANSWERS A WHERE A.ID ='` + id + "'";
     sql.query(query, (err,res)=>{
         if(err){
@@ -137,33 +135,30 @@ Answer.createAnswer = (newAnswer, result) => {
             })
         }
     })
-  }
+}
 
-  Answer.updateAnswer = (id, answer, result) => {
+Answer.updateAnswer = (id, answer, result) => {
     sql.query(
-      "UPDATE ANSWERS SET Answer = ?, Edited = ? WHERE ID = ?",
-      [answer.Answer, '1', id],
-      (err, res) => {
-        if (err) {
-          console.log("error: ", err);
-          result(null, err);
-          return;
-        }
-  
-        if (res.affectedRows == 0) {
-          // not found question with the id
-          result({ kind: "not_found" }, null);
-          return;
-        }
-  
-        console.log(res);
-        console.log("updated question: ", { id: id, ...answer });
-        result(null, { id: id, ...answer });
-        }
-      );
-  };
+        "UPDATE ANSWERS SET Answer = ?, Edited = ? WHERE ID = ?",
+        [answer.Answer, '1', id],
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
 
+            if (res.affectedRows == 0) {
+                // not found question with the id
+                result({ kind: "not_found" }, null);
+                return;
+            }
 
-
+            console.log(res);
+            console.log("updated question: ", { id: id, ...answer });
+            result(null, { id: id, ...answer });
+        }
+    );
+};
 
 module.exports = Answer;

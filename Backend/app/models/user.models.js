@@ -11,7 +11,6 @@ User.Register = (newUser, result) => {
     let query = `SELECT * FROM USERS `;
     query += `WHERE USERS.Username = '${newUser.Username}' `
 
-
     sql.query(query, (err,res)=>{ 
         if (err) {
             console.log("error: ", err);
@@ -30,7 +29,6 @@ User.Register = (newUser, result) => {
                 console.log("created new user: ", { id: res.insertId, ...newUser });
                 result(null, { id: res.insertId, ...newUser });
               });
-
         }
         else {
             result({message:"Username is taken"}, null);
@@ -58,11 +56,8 @@ User.Login = (username, password, result) =>{
                 if(auth) result(null, res[0], true)
                 else result(null, "Incorrect Password", false)
             });
-
         }
     })
-
 }
-
 
 module.exports = User;

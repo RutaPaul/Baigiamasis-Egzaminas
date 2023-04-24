@@ -18,10 +18,8 @@ const LoginForm = (props) => {
     }, []);
     return(
         <form className="LoginForm" onSubmit={handleSubmit}>
-
             <input type="text" name="loginUsername" placeholder="username..." />
             <input type="password" name="loginPassword" placeholder="password..."/>
-
             <div className="loginFormButtons">
                 <input type="submit" className="btn btn-outline-dark" value="Login" />
                 <input type="submit" className="btn btn-outline-dark" value="Register" />

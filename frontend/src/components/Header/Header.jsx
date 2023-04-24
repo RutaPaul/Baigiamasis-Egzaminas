@@ -28,11 +28,8 @@ const Header = (props) => {
                 </div>
                 :
                 ""
-
             }
-            <div className="HeaderInfo">
-                
-            </div>
+            <div className="HeaderInfo"></div>
             <div className="HeaderPanelRight">
                 <UserPanel authentication={props.authentication} setAuthentication={props.setAuthentication}/>
             </div>

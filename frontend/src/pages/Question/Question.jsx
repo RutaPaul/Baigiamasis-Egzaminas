@@ -64,7 +64,6 @@ function Question(props) {
           let visualTearing = (100 - likesPercentage - dislikesPercentage)/2;
           likesPercentage = likesPercentage + visualTearing;
           dislikesPercentage = dislikesPercentage + visualTearing;
-
           liked[0].style.width = likesPercentage + "%";
           disliked[0].style.width = dislikesPercentage + "%";
         }
@@ -136,9 +135,8 @@ function Question(props) {
           :
           "Error retrieving question."
         }
-        
     </div>
-  );
+  )
 }
 
 export default Question;

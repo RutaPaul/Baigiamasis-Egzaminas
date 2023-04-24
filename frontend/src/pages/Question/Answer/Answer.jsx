@@ -50,5 +50,4 @@ const Answer = (props) => {
     )
 }
 
-
 export default Answer;

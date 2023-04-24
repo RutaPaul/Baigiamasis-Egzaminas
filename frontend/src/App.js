@@ -20,7 +20,6 @@ function App() {
         <BrowserRouter>
           <Header authentication={Authentication} setAuthentication={setAuthentication}/>
           <div className='Main'>
-      
             <Routes>
               <Route path="/" exact element={<Main/>}/>
               <Route path="/Question/:id" exact element={<Question authentication={Authentication}/>}/>

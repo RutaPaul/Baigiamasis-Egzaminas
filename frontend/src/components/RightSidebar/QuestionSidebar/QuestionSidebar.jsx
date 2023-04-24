@@ -5,7 +5,7 @@ import "./questionSidebar.css";
 const QuestionSidebar = (props) => {
 
     let navigate = useNavigate();
-
+    
     const getQuestion = () =>{
         navigate(getQuestionUrl(props.question.ID));
     }
