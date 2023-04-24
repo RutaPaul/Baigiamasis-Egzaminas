@@ -2,10 +2,8 @@ const User = require("../models/user.models.js");
 const bcrypt = require("bcrypt");
 
 exports.controlUser = (req,res) => {
-
     switch(req.params.type.toUpperCase()){
         case "REGISTER":
-
             bcrypt.genSalt(10, (err, salt) => {
                 if(err) console.log(err);
                 bcrypt.hash(req.body.Password, salt, function(err, hash) {
@@ -23,7 +21,6 @@ exports.controlUser = (req,res) => {
                     })
                 });
             })  
-            
         break;
 
         case "LOGIN":
@@ -31,15 +28,15 @@ exports.controlUser = (req,res) => {
                 if (err)
                     res.status(500).send({message: err.message || "Some error occurred while creating new user."});
                 else if(success)
-                    res.status(200).send({Username:data})
+                    res.status(200).send(data)
                 else 
                     res.status(404).send({message: data})
             })
         break;
 
         case "LOGOUT":
-
         break;
+        
         default:
             res.status(404).send({message:"Such operation does not exists"})
         break;

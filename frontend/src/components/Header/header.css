@@ -1,13 +1,27 @@
 .Header {
     display: flex;
     flex-direction: row;
-    background-color: grey;
+    background-color: rgb(177, 177, 233);
     height: 10vh;
     line-height: 9vh;
     width: 100%;
+    border-bottom: 2px rgb(141, 141, 238) solid;
 }
 
 .HeaderInfo{
-    width: 60%;
+    width: 80%;
     text-align: right;
+    margin-right: 9%;
+    font-size: xx-large;
+    font-weight: bolder;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.HeaderPanelRight{
+    width: 8.25%;
+}
+
+.headerNewQuestionButton {
+    width: 10vw;
+    margin-left:20%;
 }

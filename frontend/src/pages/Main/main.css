@@ -1,0 +1,6 @@
+.mainPage {
+    width: 75vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,19 @@
+.mainPage {
+    width: 75vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.filterMenu{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.filterMenu button {
+    width: 15%;
+    margin-left: 2%;
+    margin-right: 2%;
+}

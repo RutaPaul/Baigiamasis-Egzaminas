@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import LoginForm from "../LoginForm";
 import "./userPanel.css";
+import Icon from "../Icon";
 
 const UserPanel = (props) => {
     
@@ -9,12 +10,12 @@ const UserPanel = (props) => {
         <div className="UserPanel">
             {
                 props.authentication.Authenticated ? 
-                <button type="button" class="btn btn-outline-dark" onClick={()=>{
+                <button type="button" className="btn btn-outline-dark" onClick={()=>{
                     setFormVisibility(false)
-                    props.setAuthentication({Username:"", Authenticated:false})
+                    props.setAuthentication({Username:"", Authenticated:false, ID:null})
                 }}>Logout</button>
                 :
-                <button type="button" class="btn btn-outline-dark" onClick={()=>{setFormVisibility(!formVisible)}}>Login</button>
+                <Icon icon="fa-solid fa-user fa-2xl headerIcon" onClick={()=>{setFormVisibility(!formVisible)}} hidden={false}/>
             }
             
             {   

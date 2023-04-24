@@ -1,0 +1,26 @@
+.questionForm {
+    width: 75vw;
+    background-color: rgb(177, 177, 233);
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+
+.questionForm p {
+    font-size: larger;
+    font-weight: bold;
+    text-align: left;
+    margin-left:2%;
+    margin-top:1%;
+}
+
+.questionForm textarea {
+    width: 100%;
+    height: 20vh;
+}
+
+.questionForm input {
+    width:20%;
+    margin-left: 40%;
+    margin-top:2%;
+}
