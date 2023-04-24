@@ -6,10 +6,11 @@ import Main from "./pages/Main";
 import Question from "./pages/Question";
 import QuestionForm from "./pages/Question/QuestionForm";
 import AnswerForm from "./pages/Question/Answer/AnswerForm";
+import AllQuestions from "./pages/AllQuestions";
 import './App.css';
 
 function App() {
-  const [Authentication, setAuthentication] = useState({Username:"", Authenticated:false})
+  const [Authentication, setAuthentication] = useState({Username:"", Authenticated:false, ID:null})
   useEffect(() => {
     setAuthentication(Authentication);
   }, []);
@@ -19,14 +20,13 @@ function App() {
         <BrowserRouter>
           <Header authentication={Authentication} setAuthentication={setAuthentication}/>
           <div className='Main'>
-            <div className='leftSidebar'>
-              leftSidebar
-            </div>
+      
             <Routes>
               <Route path="/" exact element={<Main/>}/>
-              <Route path="/Question/:id/:username" exact element={<Question authentication={Authentication}/>}/>
+              <Route path="/Question/:id" exact element={<Question authentication={Authentication}/>}/>
               <Route path="/QuestionForm/:id" exact element={<QuestionForm username={Authentication.Username}/>}/>
-              <Route path="/AnswerForm/:id" exact element={<AnswerForm username={Authentication.Username}/>}/>
+              <Route path="/AnswerForm/:id/:answerID" exact element={<AnswerForm username={Authentication.Username}/>}/>
+              <Route path="/AllQuestions" exact element={<AllQuestions username={Authentication.Username}/>}/>
             </Routes>
             <div className='rightSidebar'>
               {

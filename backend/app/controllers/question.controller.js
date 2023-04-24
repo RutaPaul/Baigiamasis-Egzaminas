@@ -56,6 +56,15 @@ exports.likeQuestion = (req, res) => {
     })
 }
 
+exports.completeQuestion = (req,res) => {
+  const id = req.params.id;
+  Question.completeQuestion(id, (err,data)=>{
+      if(err)
+      res.status(500).send({message: err.message || "Some error occurred while liking a question."});
+      else res.send(data);
+  })
+}
+
 exports.dislikeQuestion = (req, res) => {
     const id = req.params.id;
     Question.dislike(id, (err,data)=>{

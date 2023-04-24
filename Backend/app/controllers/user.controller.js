@@ -31,7 +31,7 @@ exports.controlUser = (req,res) => {
                 if (err)
                     res.status(500).send({message: err.message || "Some error occurred while creating new user."});
                 else if(success)
-                    res.status(200).send({Username:data})
+                    res.status(200).send(data)
                 else 
                     res.status(404).send({message: data})
             })

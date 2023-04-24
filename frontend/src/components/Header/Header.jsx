@@ -19,7 +19,7 @@ const Header = (props) => {
     return(
         <div className="Header">
             <div className="ActionIcons">
-                <Icon icon="fa-solid fa-house fa-2xl headerIcon" onClick={goHome} clickable={true}/>
+                <Icon icon="fa-solid fa-house fa-2xl headerIcon" onClick={goHome} hidden={false}/>
             </div>
             {
                 props.authentication.Authenticated ?
@@ -31,7 +31,7 @@ const Header = (props) => {
 
             }
             <div className="HeaderInfo">
-                {props.authentication.Username}
+                
             </div>
             <div className="HeaderPanelRight">
                 <UserPanel authentication={props.authentication} setAuthentication={props.setAuthentication}/>

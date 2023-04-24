@@ -9,22 +9,69 @@
     flex-direction: row;
 }
 
+.mainQuestionAnswerDataEdited {
+    background-color: rgb(149, 116, 241);
+    display: flex;
+    flex-direction: column;
+    width: 90%; 
+}
+
+.mainQuestionAnswerDataEdited:hover{
+    cursor: pointer;
+}
+
 .mainQuestionAnswerData{
-    background-color: green;
+    background-color: rgb(177, 158, 230);
     display: flex;
     flex-direction: column;
     width: 90%;
 }
 
+.mainQuestionAnswerData:hover{
+    cursor: pointer;
+}
+
 .mainQuestionAnswerHeader {
     text-align: left;
+    font-size: large;
+    border-bottom: 4px solid rgb(120, 77, 238);
+    border-top: 4px solid rgb(120, 77, 238);
+    border-left: 4px solid rgb(120, 77, 238);
+    background-color: rgb(243, 240, 252);
 }
 
 .mainQuestionAnswerText {
-    text-align: center;
+    text-align: left;
+    font-size: large;
+    border-right: 4px solid rgb(120, 77, 238);
+    border-left: 1px solid rgb(120, 77, 238);
+    border-bottom: 1px solid rgb(120, 77, 238);
+    height: 100%;
 }
 
 .answerActionBar{
-    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(243, 240, 252);
+    border-top: 4px solid rgb(120, 77, 238);
+    border-right: 4px solid rgb(120, 77, 238);
+    border-bottom: 4px solid rgb(120, 77, 238);
     width: 10%;
+}
+
+.popularityBalance {
+    text-align: center;
+    width: 100%;
+    margin-top:14%;
+}
+.popularityBalance p {
+    font-size: xx-large;
+}
+
+.answerLike {
+    margin-top: 8%;
+}
+
+.answerDislike {
+
 }

@@ -7,12 +7,12 @@ const QuestionSidebar = (props) => {
     let navigate = useNavigate();
 
     const getQuestion = () =>{
-        navigate(getQuestionUrl(props.question.ID, props.question.Username));
+        navigate(getQuestionUrl(props.question.ID));
     }
     
     return(
        <div className="questionSidebar" onClick={getQuestion}>
-        {props.question.Username}
+            {props.question.Title}
        </div>
     )
 }

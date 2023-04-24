@@ -1,6 +1,5 @@
 .mainPage {
-    width: 60vw;
-    background-color: rgb(177, 177, 233);
+    width: 75vw;
     height: 100%;
     display: flex;
     flex-direction: column;

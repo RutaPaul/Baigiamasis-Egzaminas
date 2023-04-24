@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-import {createQuestion, updateQuestion, getQuestionByID} from "../../../utils/api"
+import { useNavigate, useParams } from 'react-router-dom';
+import {createQuestion, updateQuestion, getQuestionByID, getHomePageUrl} from "../../../utils/api"
 import "./questionForm.css";
 
 
 let username = null;
 
 function QuestionForm(props) {
+
+    let navigate = useNavigate();
+
     const getQuestion = async (id) =>{
         let data = await getQuestionByID(id);
         if(data){
@@ -17,13 +20,13 @@ function QuestionForm(props) {
     const handleSubmit = (event) => {
         let title = event.target[0].value;
         let question = event.target[1].value;
-        if(id){
+        if(id != "null"){
             updateQuestion(title, question, id);  
         }
         else {
             createQuestion(title, question,username);  
         }
- 
+        //navigate(getHomePageUrl());
         event.preventDefault();
     }
 
@@ -50,7 +53,7 @@ function QuestionForm(props) {
                     <p>Question:</p>
                     <textarea name="question" defaultValue={question ? question.Question : ""}/>
                 </label>
-                <input type="submit" className="btn btn-outline-dark" value="Submit" />
+                <input type="submit" className="btn btn-outline-dark" value={id != "null" ? "Update" : "Create"} />
             </form>
             :
             ""

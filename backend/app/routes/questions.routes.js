@@ -6,6 +6,7 @@ const startQuestionsRoutes = (app) => {
     router.get("/user/:username", question.getUserQuestions);
     router.get("/top/:count", question.getTopQuestions);
     router.post("/", question.createQuestion);
+    router.post("/complete/:id", question.completeQuestion);
     router.post("/like/:id", question.likeQuestion);
     router.post("/dislike/:id", question.dislikeQuestion);
     router.delete("/:id", question.deleteQuestion);

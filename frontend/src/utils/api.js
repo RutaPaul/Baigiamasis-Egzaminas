@@ -70,6 +70,20 @@ const getQuestionByID = async (id) => {
     }
 }
 
+const getAnswerByID = async (id) => {
+    try {
+        const response = await fetch(baseURL + "answers/"+id);
+        if(response.status === 200){
+            return await response.json();
+        } else {
+            console.log(response);
+        }
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
 const getAllUserQuestions = async (username) => {
     try {
         const response = await fetch(baseURL + "questions/user/" + username);
@@ -88,12 +102,12 @@ const getHomePageUrl = () => {
     return "/";
 }
 
-const getAnswerFormUrl = (id) => {
-    return "/AnswerForm/"+id;
+const getAnswerFormUrl = (id, answerID=null) => {
+    return "/AnswerForm/"+id+"/"+answerID;
 }
 
-const getQuestionUrl = (id, username) => {
-    return "/question/"+id + "/" + username;
+const getQuestionUrl = (id) => {
+    return "/question/"+id;
 }
 
 const getQuestionFormUrl= (id=null) => {
@@ -111,7 +125,10 @@ const UserValidation = async (username, password, type, setAuthentication) =>{
             body: JSON.stringify({ Username:username, Password:password })
         });
         const content = await rawResponse.json();
-        setAuthentication({Username:content.Username, Authenticated:true})
+        if(content && content.Username)
+            setAuthentication({Username:content.Username, Authenticated:true, ID:content.ID})
+        else 
+            alert("Wrong password or username.")
         console.log(content);
 
     }
@@ -150,7 +167,7 @@ const createQuestion = async(title, question, username) => {
             body: JSON.stringify({ Username:username, Question:question, Title:title })
         });
         const content = await rawResponse.json();
-        console.log(content);
+        return content;
 
     }
     catch(ex){
@@ -169,6 +186,25 @@ const updateQuestion = async(title, question, questionID) => {
             body: JSON.stringify({Question:question, Title:title })
         });
         const content = await rawResponse.json();
+        alert("Question updated succesfully");
+        console.log(content);
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
+const updateAnswer = async(answer, answerID) => {
+    try {
+        const rawResponse = await fetch(baseURL + "answers/"+answerID, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({Answer:answer})
+        });
+        const content = await rawResponse.json();
         console.log(content);
     }
     catch(ex){
@@ -177,8 +213,32 @@ const updateQuestion = async(title, question, questionID) => {
 }
 
 const deleteQuestion = async (id) => {
+
+    if (window.confirm("Are you sure you want to delete the question ?") == true) {
+        try{
+            const rawResponse = await fetch(baseURL + "questions/"+id, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            const content = await rawResponse.json();
+            console.log(content);
+    
+        }
+        catch(ex){
+            console.log(ex);
+        }  
+    } else {
+        return;
+    }
+    
+}
+
+const deleteAnswer = async (id) => {
     try{
-        const rawResponse = await fetch(baseURL + "questions/"+id, {
+        const rawResponse = await fetch(baseURL + "answers/"+id, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -197,6 +257,57 @@ const deleteQuestion = async (id) => {
 const likeQuestion = async(questionID) => {
     try{
         const rawResponse = await fetch(baseURL + "questions/like/"+questionID, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
+const likeAnswer = async(answerID) => {
+    try{
+        const rawResponse = await fetch(baseURL + "answers/like/"+answerID, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
+const completeQuestion= async(id) => {
+    try{
+        const rawResponse = await fetch(baseURL + "questions/complete/" + id, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+    }
+    catch(ex){
+        console.log(ex);
+    }
+}
+
+const dislikeAnswer = async(answerID) => {
+    try{
+        const rawResponse = await fetch(baseURL + "answers/dislike/"+answerID, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -233,5 +344,7 @@ export {
     UserValidation, getAllQuestions, getHomePageUrl, getQuestionUrl, getQuestionFormUrl,
     createQuestion, likeQuestion, dislikeQuestion, getAllUserQuestions,
     getTopQuestions, deleteQuestion, getQuestionByID, getAnswersByQuestionID,
-    getQuestionAnswerCount, getAnswerFormUrl, createAnswer, updateQuestion
+    getQuestionAnswerCount, getAnswerFormUrl, createAnswer, updateQuestion,
+    likeAnswer, dislikeAnswer, getAnswerByID, updateAnswer, deleteAnswer,
+    completeQuestion
 }

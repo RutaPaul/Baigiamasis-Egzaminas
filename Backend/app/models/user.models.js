@@ -55,7 +55,7 @@ User.Login = (username, password, result) =>{
         if(res.length == 1){
             bcrypt.compare(password, res[0].Password, function(err, auth) {
                 if(err) result(err,null,false);
-                if(auth) result(null, username, true)
+                if(auth) result(null, res[0], true)
                 else result(null, "Incorrect Password", false)
             });
 

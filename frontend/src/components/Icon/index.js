@@ -1,14 +1,14 @@
 import React from "react";
 import "./icon.css";
 
-const Icon = ({icon, onClick, clickable}) => {
+const Icon = ({icon, onClick, hidden}) => {
     return (
         <>
         {
-            clickable ?
-            <i className={icon + " clickableIcon"} onClick={onClick}></i>
+            hidden ?
+            ""
             :
-            <i className={icon} onClick={onClick}></i>
+            <i className={icon + " clickableIcon"} onClick={onClick}></i>
         }
         </>
     )

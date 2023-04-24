@@ -12,6 +12,9 @@
     width: 80%;
     text-align: right;
     margin-right: 9%;
+    font-size: xx-large;
+    font-weight: bolder;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .HeaderPanelRight{

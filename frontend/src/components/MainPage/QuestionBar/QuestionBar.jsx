@@ -14,7 +14,7 @@ const QuestionBar = (props) => {
         }
     })
     const getQuestion = () =>{
-        navigate(getQuestionUrl(props.question.ID, props.question.Username));
+        navigate(getQuestionUrl(props.question.ID));
     }
 
     const getAnswersCount = async () => {
@@ -28,16 +28,22 @@ const QuestionBar = (props) => {
     }
     
     return(
-       <div className="questionBar" onClick={getQuestion}>
+       <div className={props.question.Edited == 1 ? "questionBarEdited" : "questionBar"} onClick={getQuestion}>
             <div className="questionBarTop">
                 <div className="titleClass">
-                    {props.question.Title.substring(0,50)}
-                </div>
+                {props.question.Title.substring(0,50)} 
+                </div> 
+                {"["+new Date(props.question.Date).toLocaleString() +"]"} 
                 <div className="usernameClass">
-                    {"Author: " + props.question.Username}
+                {props.question.Edited == 1 ? "[ Edited ] " : ""}{"Author: " + props.question.Username}
                 </div>
                 <div className="answersCountClass">
                     {"Answers: " + answerCount}
+                </div>
+                <div className="answersCountClass">
+                    {"Likes: " + props.question.Likes}
+                </div><div className="answersCountClass">
+                    {"Dislikes: " + props.question.Dislikes}
                 </div>
             </div>
             <div className="questionClass">

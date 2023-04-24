@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {getTopQuestions} from "../../utils/api";
 import "./mainPage.css";
 import QuestionBar from "./QuestionBar";
 
 const MainPage = (props) => {
-
+    let navigate = useNavigate();
     const getQuestions = async () =>{
         let data = await getTopQuestions(5);
         if(data){
             setQuestions(data);
         }
+    }
+
+    const getAllQuestions = () =>{
+        navigate("/allquestions");
     }
 
     const [questions, setQuestions] = useState(null);
@@ -22,6 +27,9 @@ const MainPage = (props) => {
 
     return(
         <>
+        <div style={{fontSize:"xx-large", fontWeight:"bolder"}}>
+            Top questions
+        </div>
         {
             questions ? 
             (
@@ -34,7 +42,7 @@ const MainPage = (props) => {
         }
         {
             questions ?
-                <button style={{marginTop:"5%"}} className="btn btn-outline-primary"> See All</button>
+                <button style={{marginBottom:"5%", backgroundColor:"rgb(60, 151, 255)"}} className="btn btn-info" onClick={()=>{getAllQuestions()}}> See All</button>
             :
             ""
         }

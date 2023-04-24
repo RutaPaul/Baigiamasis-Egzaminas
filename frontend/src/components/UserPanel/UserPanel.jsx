@@ -12,10 +12,10 @@ const UserPanel = (props) => {
                 props.authentication.Authenticated ? 
                 <button type="button" className="btn btn-outline-dark" onClick={()=>{
                     setFormVisibility(false)
-                    props.setAuthentication({Username:"", Authenticated:false})
+                    props.setAuthentication({Username:"", Authenticated:false, ID:null})
                 }}>Logout</button>
                 :
-                <Icon icon="fa-solid fa-user fa-2xl headerIcon" onClick={()=>{setFormVisibility(!formVisible)}} clickable={true}/>
+                <Icon icon="fa-solid fa-user fa-2xl headerIcon" onClick={()=>{setFormVisibility(!formVisible)}} hidden={false}/>
             }
             
             {   
