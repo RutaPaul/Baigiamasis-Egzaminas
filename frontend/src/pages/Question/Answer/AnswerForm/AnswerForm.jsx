@@ -51,7 +51,6 @@ const AnswerForm = (props) => {
     return (
         <>
         {
-            props.username ? 
             <form className="questionForm" onSubmit={handleSubmit}>
                 <label>
                     <p>Answer:</p>
@@ -80,8 +79,6 @@ const AnswerForm = (props) => {
 
                 <input type="submit" className="btn btn-outline-dark" value="Go Back" />
             </form>
-            :
-            ""
         }
         </>
     )

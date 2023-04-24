@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {createQuestion, updateQuestion, getQuestionByID, getHomePageUrl} from "../../../utils/api"
+import {createQuestion, updateQuestion, getQuestionByID, getHomePageUrl, getQuestionUrl} from "../../../utils/api"
 import "./questionForm.css";
 
 
@@ -20,13 +20,23 @@ function QuestionForm(props) {
     const handleSubmit = (event) => {
         let title = event.target[0].value;
         let question = event.target[1].value;
-        if(id != "null"){
-            updateQuestion(title, question, id);  
+        let value = event.nativeEvent.submitter.value;
+        if(value == "Go Back"){
+            if(id != "null"){
+                navigate(getQuestionUrl(id));
+            }
+            else {
+                navigate(getHomePageUrl());
+            }
         }
         else {
-            createQuestion(title, question,username);  
+            if(id != "null"){
+                updateQuestion(title, question, id);  
+            }
+            else {
+                createQuestion(title, question,username);  
+            }
         }
-        //navigate(getHomePageUrl());
         event.preventDefault();
     }
 
@@ -54,10 +64,12 @@ function QuestionForm(props) {
                     <textarea name="question" defaultValue={question ? question.Question : ""}/>
                 </label>
                 <input type="submit" className="btn btn-outline-dark" value={id != "null" ? "Update" : "Create"} />
+                <input type="submit" className="btn btn-outline-dark" value="Go Back" />
             </form>
             :
             ""
         }
+
         </>
   );
 }
